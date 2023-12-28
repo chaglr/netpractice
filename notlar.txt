@@ -1,0 +1,205 @@
+Ipv4 32 bitlik sayi degeri bu yuzden de 8 bit'e kadar binary sayi
+kullaniyoruz.
+8bitlik bir sayi max 255 degeri alir.
+
+x.x.x.x her x bir oktet gosteriyor ve her oktet 8 bitten olusuyor.
+
+BIT		:	8		7		6		5		4		3		2		1
+BINARY	:	1		1		1		1		1		1		1		1
+USSEL	:	2^8		2^7		2^6		2^5		2^4		2^3		2^2		2^1
+DEC		:	128		64		32		16		8		4		2		1
+
+tüm bitler 0 olursa BINARY :	0	0	0	0	0	0	0	0 decimal = 0
+tum bitler 1 olursa BINARY :	1	1	1	1	1	1	1	1 decimal = 255
+
+biz dec rakami 8bit binary hesabi yapabilmek icin buyukten kucuge ekleme yaparak hesaplariz.
+
+mesela dec 168 sayisi
+yukaridaki tabloyu kullanarak 168 dec i binary e cevirelim
+
+once en buyugunden baslayarak cikarma islemi yapariz.
+	8.bit		7.bit		6.bit		5.bit		4.bit		3.bit		2.bit		1.bit
+	128			  64		 32			 16			 8			4			2			1
+192-128=40				  40-32=8				  8-8=0
+	1			 0			 1			 0			1			0			0			0
+
+
+mesela 252 sayisi
+bunu dec to bin yaparken tersten bu islemi yaparsak daha kolay olur 252 max olan 255 cok yakin
+once en buyugunden baslayarak cikarma islemi yapariz.
+	8.bit		7.bit		6.bit		5.bit		4.bit		3.bit		2.bit		1.bit
+	128			  64		 32			 16			 8			4			2			1
+	1			  1			 1			1			1			1			0			0
+
+255-252 = 3 in sifir olmasi lazim ve digerleri 1 olacak ki tersten hesaplamis oluruz
+
+Ipv4 -> 32 bit   x.x.x.x
+
+BINARY	:	11000000.10101000.00000001.00000001
+DEC		:	  192	.  168	 .   1	  .	   1
+
+
+simdide bin den dec a ceviri yapalim.
+
+bin: 11001010.10101001.01010101.00100010
+
+128		64		32		16		8		4	2	1
+
+1		1		0		0		1		0	1	0
+128	+	64	+	0	+	0	+	8 	+	0 +	1 + 0 = 201
+
+
+#IP SUBNETTING
+1) Subnet Mask kullanarak bir ip adresinin ;
+	- Network adresini
+	- Broadcast adresini
+	- Network kullinabilir ilk Ipv4 adresini
+	- Network'de kullanilabilir Son Ipv4 adresini
+
+2 - Subnetting islemi
+
+#Niye Subnetting islemine ihtiyac duyuyoruz.
+
+1- Ipv4 adreslerini daha verimli kullanmak. Ip adresleri sinirlidir.
+2- bir networkte tum  Broadcast tum networkte gidiyor. Subnetting islemi broadcast islemini verimini arttiriyor.
+3- alta aglara bolunen  networkt daha kolay handle ediliyor.
+4- Guvenlik icin burada subnet ler arasina iletisim kisiti okayarak birbiririyle erisimi ayarlayabiliyoruz.
+
+# Subnet Mask : Alt ag maskesi
+#subnet Mask Bir ip adresinin hangi networkte oldugunun belirlenmesi icin kullanilan bir adrestir. bu subnetmask kullanarak bir ip adresinin
+hangi bolumunun network hangi bolumunun HOST oldugunu ogreniyoruz. subnetmasklarda 32 bitten olusuyor. Tipki Ipv4 adresler gibi
+
+bize bir Ipv4 ve subnet mask verildiginde biz bununla
+1) Network adresini		2) Broadcast adresini	3)kullanilabilir ilk adresini	4)Kullanilabilir son adresini bulabiliriz.
+
+bir ipdresin network adresini ve broadcast adresini bilirsek kullanilabilir adresini de bulabiliyoruz.
+
+Bunlari bulmak icin 2 yontem var ilki
+
+#Binary ikili sayi sistemi kullanarak bulmak
+#Network adresini
+#Broadcast adresini
+#Kullanilabilir ilk ve son IP adresini
+
+IPv4 adresimiz bu olsun ve sonunda da subnetmask CIDR ile yazilmis olsun: 192.168.1.10/24
+CIDR 24 notasyonu bize subnetmask da 24 adet 1 bitinin oldugunu gosteriyor. (soldan saga)
+
+/24 subnetmaski = bin-> 11111111.11111111.11111111.00000000 bu da  dec-> 255.255.255.0 a esit.
+**bu 1bitler bize Network adresini veriyor sifirlar ise Host kullanici adresini veriyor. bunu soyle kullaniyoruz.
+
+IP : 192.168.1.10 subnetmask : 255.255.255.0 yani /24 ise
+
+CIDR				:		8		+		8		+		8				0		= 24
+subnetmask	dec		:	   255		.	   255		.	   255		.		0
+subnet mask bin 	:	11111111	.	11111111	.	11111111	.	11111111	.	11111111	.	11111111
+192.168.1.10 Ipv4	:	11000000	.	10101000	.	00000001	+	00000000
+						<------------------Network --------------->   <--HOST-->
+
+Ipv4 :	192.168.1.00001010			Subnet Mask	:	255.255.255.0
+		<network>.<-Host->							<network-->.<host>
+
+Neden Ipv4 host kismini binary yazdik bunu kullanarak Network ve Broadcast adreslerini basit binary max-min hesabiyla bulacagiz.
+ve bu iki adresle de kullanilabilir adres araligini bulacagiz.
+1. islemimiz Ipv4 adresini Network ve HOST kismina ayirmakti onu yaptik
+2. islemimiz Ipv4 adresinin Host kismini Binary olarak sifir yap. Bu bize Network adresini verir.
+
+192.168.1.00000000 -> 192.168.1.0 bu IPv4 in network adresiymis.
+
+3. islemimiz Broadcast adresini bulmak.
+bu seferde Ipv4 HOST kismini 1 yap bu bize Broadcast Ipv4 adresini verir.
+
+4. Networkde kullanilbilen max min adresleri bulalim.
+network adresinin bir fazlasi bize kullanilabilir ilk adresi verir. 	192.168.1.1
+broadcast adresinin bir eksigi bize kullanilabilir son adresi verir.	192.168.1.254
+
+network hostlar icin Broadcast ve Network adreslerini kullanamiyoruz.
+
+kisaca bakarsak tekrardan
+Ipv4 192.168.1.10 subnetmask 255.255.255.0 yada \24 yada 11111111.11111111.11111111.00000000
+
+Network adresi 		:	192.168.1.00000000 = 192.168.1.0
+Broadcast adresi	:	192.168.1.11111111 = 192.168.1.255
+ilk kull ipv4		:	192.168.1.1
+son kull Ipv4		:	192.168.1.254
+
+
+let go with some harder stuff
+
+ipv4: 165.72.83.194/19 bunun kullanilabilir ipv4 araligini bulalim.
+
+once CIDR mask koyalim. 19 tane 1 bit 11111111.11111111.11100000.0000000 = 255.255.11100000.0000000
+
+Ipv4 adresini buna gore maskeleyelim 165.72.01010011.1100010 son iki oktet i bin yazdim ki anlasilir olsun.
+bizim maskimiz 1lerin bittigi yerde host adresi basliyor.
+
+mask: 255.255.11100000.0000000
+ipv4  165. 72.010100111.1100010
+	<---network-><---host---->
+burada Ipv4 3. oktetin soldan 3. bitine kadar mask yapiyoruz yani geri kalan sag tarag host kismi sol tarafi ise network kismi.
+ipv4 adreninin network adresini bulmak icin host kismini sifir yapiyoruz.
+165.72.01000000.00000000 =165.72.64.0 bu bizim network adresimiz.
+
+ipv4 adreninin broadcast adresini bulmak icin host kismini bir yapiyoruz.
+165.72.0101111.11111111 = 255.72.195.95.255
+
+165.72.64.1 	->	ilk kullanibilir ipv4 adresimiz
+165.72.95.254 	->	son kullanulabilir ipv4 adresimiz. ki bize verilen ip adresi de bu adres araliginda.
+
+baska bir ornek yapalim.
+
+Ipv4 87.121.165.49/14
+
+CIDR a gore maskimizi ayarladik.
+Ip: 87.01111001.10100101.001100001
+	<network><host--------------->
+sonra network kismi sabit tutup once geri kalan kismi 0 doldurup network adresi sonra da 1 ile doldurup broadcast adresi
+
+87.011110|00.00000000.00000000 -> 87.120.0.1 	bir fazlasi 87.120.0.2
+87.011110|11.11111111.11111111 -> 87,123.255.255 bir eksigi 87.120.255.255
+
+
+SIMDI BASKA BIR YONTEMLE BUNU HESAPLAMAYI OGRENELIM BU DAHA KOLAY BIR YONTEM
+siralama		1.		2.		3.		4.		5.		6.		7.		8. 	bit sirasi
+DEC			:	128		64		32		16		8		4		2		1 	network artis sayisi
+toplam			128		192		224		240		248		252		254		255 (oktet subnet decimal)
+
+kolay yontemle bir ornek yapalim.
+
+ip	165.72.83.194/19 19 oldugundan ikinci oktet de calisacagiz.
+ 19 8 bit e bolersek geriye 3 kalir. toplam degeri de bize subnet mask oktet degerini verir. yani 165.72.224.0 olur
+ buradaki decimal ise bize networklerde ip araligini verir. yani 0 dan baslayarak her subnette 32 ip bulunur biz de
+ bu araliklardan hangisinde bizim ip adresimiz var onu buluruz.
+
+ 						|	165	.	72	 		  0
+						|
+						|	165	.	72			 32
+						|
+						|	165	.	72			 64 --> bu bizim network adresimiz.
+						|
+3. oktet networkler		|	(->165.72.83.194 bu aralikta olur (3. oktet ile calistigimizi unutma).)
+						|
+						|	165	.	72			 96 --> bu da sonraki subnetin network adresi bunun bir eksigi de bizim broadcast adresimiz yani 165.72.95.255
+						|
+						|						128
+
+
+165.72.83.194 network adresi +1 min kullanilabilir ipv4
+165.72.95.255 broadcast address -1 max kullanilabilir ipv4
+
+
+87.121.165.49\14 orneigmiz
+
+14 = 8 + 6. -> 6. siraya gideriz ve calisacagimiz oktet 2. oktet --> 255.252.0.0 subnet maskimiz.
+
+
+artis sayisi 4. 2.oktet calisicaz.
+
+87.0
+87.4
+87.8
+.
+.
+.
+87.120				-> 2.) 87.120.0.0 network adresimiz bir fazlasi kull adres baslangici 87.120.0.1
+	->	1.) ipv4 bu aralikta
+87.124				->3.) 87.123.255.255 broadcast ip adresimiz bir eksigi ise max kull adres. 87.123.255.254
