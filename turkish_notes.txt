@@ -20,7 +20,7 @@ yukaridaki tabloyu kullanarak 168 dec i binary e cevirelim
 once en buyugunden baslayarak cikarma islemi yapariz.
 	8.bit		7.bit		6.bit		5.bit		4.bit		3.bit		2.bit		1.bit
 	128			  64		 32			 16			 8			4			2			1
-192-128=40				  40-32=8				  8-8=0
+168-128=40				  40-32=8				  8-8=0
 	1			 0			 1			 0			1			0			0			0
 
 
@@ -84,6 +84,9 @@ Bunlari bulmak icin 2 yontem var ilki
 IPv4 adresimiz bu olsun ve sonunda da subnetmask CIDR ile yazilmis olsun: 192.168.1.10/24
 CIDR 24 notasyonu bize subnetmask da 24 adet 1 bitinin oldugunu gosteriyor. (soldan saga)
 
+
+
+
 /24 subnetmaski = bin-> 11111111.11111111.11111111.00000000 bu da  dec-> 255.255.255.0 a esit.
 **bu 1bitler bize Network adresini veriyor sifirlar ise Host kullanici adresini veriyor. bunu soyle kullaniyoruz.
 
@@ -91,8 +94,8 @@ IP : 192.168.1.10 subnetmask : 255.255.255.0 yani /24 ise
 
 CIDR				:		8		+		8		+		8				0		= 24
 subnetmask	dec		:	   255		.	   255		.	   255		.		0
-subnet mask bin 	:	11111111	.	11111111	.	11111111	.	11111111	.	11111111	.	11111111
-192.168.1.10 Ipv4	:	11000000	.	10101000	.	00000001	+	00000000
+subnet mask bin 	:	11111111	.	11111111	.	11111111	.	00000000
+192.168.1.10 Ipv4	:	11000000	.	10101000	.	00000001	+	00001010
 						<------------------Network --------------->   <--HOST-->
 
 Ipv4 :	192.168.1.00001010			Subnet Mask	:	255.255.255.0
@@ -133,7 +136,7 @@ Ipv4 adresini buna gore maskeleyelim 165.72.01010011.1100010 son iki oktet i bin
 bizim maskimiz 1lerin bittigi yerde host adresi basliyor.
 
 mask: 255.255.11100000.0000000
-ipv4  165. 72.010100111.1100010
+ipv4  165. 72.01010011.1100010
 	<---network-><---host---->
 burada Ipv4 3. oktetin soldan 3. bitine kadar mask yapiyoruz yani geri kalan sag tarag host kismi sol tarafi ise network kismi.
 ipv4 adreninin network adresini bulmak icin host kismini sifir yapiyoruz.
@@ -159,10 +162,16 @@ sonra network kismi sabit tutup once geri kalan kismi 0 doldurup network adresi 
 
 
 SIMDI BASKA BIR YONTEMLE BUNU HESAPLAMAYI OGRENELIM BU DAHA KOLAY BIR YONTEM
-siralama		1.		2.		3.		4.		5.		6.		7.		8. 	bit sirasi
-DEC			:	128		64		32		16		8		4		2		1 	network artis sayisi
-toplam			128		192		224		240		248		252		254		255 (oktet subnet decimal)
+siralama		1.		2.		3.		4.		5.		6.		7.		8. 	cidr/8 kalan bit sayisi
+DEC			:	128		64		32		16		8		4		2		1 	network ip araligi
+toplam			128		192		224		240		248		252		254		255 mask dec degeri
 
+//
+30
+30/8=3 kalan 6 ->252 255.255.255.252
+
+
+//
 kolay yontemle bir ornek yapalim.
 
 ip	165.72.83.194/19 19 oldugundan ikinci oktet de calisacagiz.

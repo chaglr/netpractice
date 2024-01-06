@@ -1,0 +1,10 @@
+CIDR (Classless Inter-Domain Routing) notasyonu ile ifade edilen subnet maskeleri,
+0 ile 32 arasında bir değere sahip olabilirler. CIDR notasyonu, bu değeri IP adreslerinin ön ekini ve alt ağı belirlemek için kullanır.
+İşte CIDR notasyonunda kullanılabilecek değerlerin bir özeti:
+
+CIDR /0: Tüm IPv4 adreslerini ifade eder (0.0.0.0/0).
+CIDR /1 ila /31: Aralarında herhangi bir değeri alabilirsiniz.
+Bu, alt ağın büyüklüğünü belirler, örneğin /24 bir alt ağı ifade ederken, /31 iki IP adresini içeren çok küçük bir alt ağı ifade edebilir.
+CIDR /32: Tek bir IP adresini ifade eder (Örneğin, 192.168.1.1/32).
+CIDR notasyonu, bir alt ağın boyutunu ve IP adresleri arasındaki ilişkiyi belirtmek için oldukça esnek bir yöntemdir.
+Dolayısıyla CIDR notasyonunda kullanılabilecek değerler, 1 ile 32 arasında değişebilir.

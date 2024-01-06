@@ -1,0 +1,67 @@
+1)sayisal bir degerdir.
+2)3. katman protokoldur.
+4)connectionless baglantisiz bir protokoldur.
+5)Paketin hedefe ulasmasini garanti etmez
+3)yonetici tarafindan degistirilebilir
+4)network cihazlarini tanimlamak icin kullanilabilirbir networkte her bir cihazin ayri ip adresi vardir.
+
+IP ADRESININ FORMATI
+
+Ipv4 adresi :192.168.1.1 Subnet Mask 255.255.255.0
+
+Network Adresi (Network ID)
+Network Adresi Router Network adresine gore yonlendirme yapar,
+
+Host Adresi (Host id)
+Server, PC  vb uc cihazlar kullanir
+
+ip
+
+
+
+IPv4 adresleri, internetin temel yapıtaşlarından biridir ve verilerin doğru konumlara ulaşmasını sağlar.
+IPv4 adresleri 32 bit uzunluğundadır ve genellikle dört sayı grubu halinde gösterilir; her grup bir oktet oluşturur ve 0 ile 255 arasında bir değer alabilir.
+Örneğin, 192.0.2.1 bir IPv4 adresidir.
+
+IPv4 adresleri dört ana sınıfa ayrılır: A, B, C ve D. Her sınıf, farklı ağ ve host (bilgisayar veya cihaz) kapasitelerine sahiptir:
+
+Sınıf A: Büyük ölçekli ağlar için tasarlanmıştır. Bir Sınıf A adresinin ilk oktetindeki ilk bit her zaman 0'dır.
+Bu, 1.0.0.0'dan 126.0.0.0'a kadar adresleri içerir. Sınıf A'da, 16 milyonun üzerinde host adresi barındırılabilir.
+
+Sınıf B: Orta ölçekli ağlar için uygundur. Sınıf B adreslerinin ilk oktetindeki ilk iki bit '10' şeklindedir
+	ve bu 128.0.0.0'dan 191.255.0.0'a kadar olan adresleri kapsar. Sınıf B'de, her ağ 65.536 host adresi barındırabilir.
+
+Sınıf C: Küçük ölçekli ağlar için idealdir. Bu sınıfın adreslerinin ilk oktetindeki ilk üç bit '110' şeklindedir ve 192.0.0.0'dan 223.255.255.0'a kadar uzanır.
+Her Sınıf C ağında 256 host adresi barındırılabilir.
+
+Sınıf D: Multicast grupları için ayrılmıştır.
+Bu sınıfın adresleri 224.0.0.0 ile 239.255.255.255 arasında değişir ve genellikle ağ yayınlarında kullanılır.
+
+IPv4 adresleriyle ilgili önemli bir not, adreslerin tükendiği ve bu yüzden IPv6'ya geçişin teşvik edildiğidir. IPv6, daha fazla adres kapasitesi ve gelişmiş özellikler sunar.
+
+
+Ev ve iş yerlerinde kullanılan ağlar genellikle "Sınıf C" IPv4 adreslerini kullanır. Bu ağlar, genellikle küçük ve orta ölçekli oldukları için bu sınıf en uygunudur.
+Sınıf C adresleri, her ağda 256 host (cihaz veya bilgisayar) barındırma kapasitesine sahiptir, bu da çoğu ev ve küçük işletme için yeterlidir.
+
+Sınıf C adreslerinin özellikleri şöyle özetlenebilir:
+
+Adres Aralığı: 192.0.0.0'dan 223.255.255.0'a kadar.
+Her ağda 256 potansiyel host adresi (gerçek kullanılabilir adres sayısı biraz daha azdır çünkü ağ adresi ve yayın adresi gibi özel amaçlar için bazı adresler ayrılır).
+Ağ ve host bölümlerini ayırmak için kullanılan varsayılan alt ağ maskesi genellikle 255.255.255.0'dır.
+Evde veya iş yerinde kullanılan routerlar, genellikle bu adres aralığından otomatik olarak IP adresleri dağıtır.
+Bu dağıtım genellikle DHCP (Dynamic Host Configuration Protocol) üzerinden yapılır ve kullanıcıların manuel olarak IP adresi ayarlamasına gerek kalmaz.
+
+Büyük şirketler veya kurumlar daha geniş ağlara ihtiyaç duyduklarında
+Sınıf A veya B IPv4 adreslerini tercih edebilirler veya IPv6'ya geçiş yapabilirler. IPv6, daha fazla adres kapasitesi ve bazı gelişmiş özellikler sunarak IPv4'ün adres sınırlamalarını aşar.
+
+
+kullanilamayacak ipv4 ler.
+127.0.0.0/8 - Localhost (Loopback) Adresi
+127.0.0.0 ile 127.255.255.255 Arası: Bu adres aralığı "localhost" veya "loopback" adresleri olarak bilinir. Bu adresler, bir bilgisayarın kendisine ağ üzerinden değil, kendi içinde erişmesi için kullanılır.
+127.0.0.1: Bu adres genellikle "localhost" adresi olarak kullanılır.
+Bir program veya servis bu adrese bağlandığında, aslında kendi bilgisayarının ağ arayüzüne bağlanır. Bu, ağ bağlantılarını test etmek veya yerel sunucuları geliştirmek için kullanılır.
+
+Diğer Özel IP Adres Blokları
+0.0.0.0: Bu adres genellikle bir ağın başlangıcı olarak kullanılır ve bir belirli hostu değil, "hiçbiri" veya "bilinmeyen" bir ağı temsil eder. Örneğin, bir ağ cihazında varsayılan rota olarak kullanılır.
+10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16: Bunlar özel ağlar için ayrılmış adres bloklarıdır. Bu adresler İnternet üzerinde benzersiz değildir ve genellikle yerel ağlarda (LAN) iç kullanım için ayrılır.
+169.254.0.0/16: Bu adres aralığı, DHCP sunucusuna ulaşamayan cihazlar tarafından otomatik olarak yapılandırılan IP adresleri (APIPA - Automatic Private IP Addressing) için ayrılmıştır.
