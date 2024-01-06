@@ -1,0 +1,86 @@
+Level 9 :
+Goal 1 : host meson needs to communicate with host ion
+Goal 2 : host cation needs to communicate with host gluon
+Goal 3 : host meson needs to communicate with host Internet
+Goal 4 : host meson needs to communicate with host gluon
+Goal 5 : host ion needs to communicate with host cation
+Goal 6 : host cation needs to communicate with host Internet
+
+(s) is fixed numbers you can not change that but the oher adresses you can change it for the reaching the goals
+
+Devices:
+host A: meson
+host B: ion
+host C: cation
+host D: gluon
+router R1: proton
+router R2: boson
+internet I: Internet
+
+Connections:
+interface R21 -> interface R13
+interface R22 -> interface C1
+interface R23 -> interface D1
+interface R12 -> internet I: Internet
+interface R11 -> switch S: neutron
+interface B1 -> switch S: neutron
+interface A1 -> switch S: neutron
+
+host A: meson
+Routes : 0.0.0.0/0 => 14.198.223.1
+interface A1:
+	IP	: 192.168.52.2
+	Mask: 255.255.255.0
+
+host B: ion
+Routes : 8.8.8.8/16 => 14.199.223.1
+interface B1:
+	IP	:192.168.153.42
+	Mask: 255.255.255.0
+
+Host C: cation
+Routes 0.0.0.0/0(s) => 10.0.0.254
+interface C1:
+	IP	: 10.0.0.1
+	Mask: 255.255.255.0
+
+host D: gluon
+Routes : 10.0.0.0/8 => 59.159.88.91(s)
+interface D1:
+	IP	:100.202.19.131
+	Mask: 255.255.255.0
+
+router R2: boson
+Routes :
+0.0.0.0/0(s) => 100.202.16.254
+interface R21:
+	IP: 100.202.18.253
+	Mask : 255.255.255.252(s)
+interface R22:
+	IP: 10.0.0.254
+	Mask : 255.255.255.0
+interface R23:
+	IP: 8.8.8.8
+	Mask : /18(s)
+
+
+router R1: proton
+Routes :
+	10.0.0.0/8 => 100.202.14.253
+	192.168.24.12/26 => 100.202.15.253
+	0.0.0.0/0(s) => 163.172.250.1(s)
+interface R11:
+	IP	:192.168.190.1
+	Mask:255.255.255.128(s)
+interface R12:
+	IP	:163.172.250.12(s)
+	Mask:255.255.255.240(s)
+interface R13:
+	IP	:192.168.190.1
+	Mask:255.255.255.0
+
+internet I: Internet
+Routes :
+14.198.223.0/22 => 163.172.250.12(s)
+10.0.0.0/27 => 163.172.250.12(s)
+default => 163.172.250.12(s)

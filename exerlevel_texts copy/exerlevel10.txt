@@ -1,0 +1,73 @@
+Level 10 :
+Goal 1 : host Host one needs to communicate with host Host two
+Goal 2 : host Host three needs to communicate with host Host four
+Goal 3 : host Host one needs to communicate with host Internet
+Goal 4 : host Host one needs to communicate with host Host four
+Goal 5 : host Host two needs to communicate with host Host three
+Goal 6 : host Host three needs to communicate with host Internet
+Goal 7 : host Host four needs to communicate with host Internet
+
+
+
+connections:
+interface H11 <=> switch S1: Switch one
+interface H21 <=> switch S1: Switch one
+interface R11 <=> switch S1: Switch one
+interface R13 <=> interface R21
+interface R12 <=> internet I: Internet
+interface R23 <=> interface H41
+interface R22 <=> interface H31
+
+host H1: Host one
+Routes : 0.0.0.0/0 => 165.238.137.1
+interface H11:
+	IP	:165.238.137.2
+	Mask:?
+
+host H2: Host two
+Routes : default => 165.238.137.1
+interface H21:
+	IP	:?
+	Mask:?
+
+host H3: Host three
+Routes : 0.0.0.0/0 =>?
+interface H31
+	IP	:?
+	Mask:?
+
+host H4: Host four
+Routes : default => 165.238.137.129
+interface H41
+	IP	: 165.238.137.131
+	Mask: 255.255.255.192
+
+router R1: Router one
+Routes :
+	? => 165.238.137.253
+	165.238.137.128/26 => 165.238.137.253
+	0.0.0.0/0 => 163.172.250.1
+interface R11:
+	IP	:165.238.137.1
+	Mask:255.255.255.128
+interface R12:
+	IP	:163.172.250.12
+	Mask: 255.255.255.240
+interface R13
+	IP	:165.238.137.254
+	Mask:?
+
+router R2: Router two
+Routes :0.0.0.0/0 => 165.238.137.254
+interface R21
+	IP	:165.238.137.253
+	Mask:255.255.255.252
+interface R22
+	IP	:?
+	Mask:?
+interface R23
+	IP	:?
+	Mask:?
+
+internet I: Internet
+Routes :? => 163.172.250.12

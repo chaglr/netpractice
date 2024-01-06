@@ -1,0 +1,34 @@
+(s) is fixed numbers you can not change that
+(c) is can changeable numbers
+Goal 1 : host webserv.non-real.com needs to communicate with interface Somewhere on the Net
+
+cihazlar:
+host A: webserv.non-real.com
+switch S: sw-1.non-real.com
+router R: gate.non-real.com
+internet I: Internet
+
+baglantilar
+interface A1 -> switch S:
+switch S -> interface R1
+router interface R2 -> internet I
+
+
+host A: webserv.non-real.com
+Routes : 0.0.0.0/0(c)  -> 78.64.212.1(c)
+interface A1:
+	IP	: 78.64.212.227(s)
+	Mask	: 255.255.255.0(c)
+
+
+router R: gate.non-real.com
+Routes : 10.0.0.0/8(c)  => 163.172.250.1(s)
+interface R1:
+	IP	: 78.64.212.254(c)
+	Mask: 255.255.255.128(s)
+interface R2:
+	IP	:163.172.250.12(s)
+	Mask:255.255.255.240(s)
+
+internet I: Internet
+Routes : 78.64.212.0/31(c)  => 163.172.250.12(s)

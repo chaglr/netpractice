@@ -1,0 +1,47 @@
+Level 5:
+Goal 1: Host Machine A needs to communicate with host The Mighty Router.
+Goal 2: Host Machine B needs to communicate with host The Mighty Router.
+Goal 3: Host Machine A needs to communicate with host Machine B.
+
+There are 2 hosts (host B: Machine B, host A: Machine A) and 1 router (router R: The Mighty Router).
+These hosts are connected to the router via cables. Host B (Interface B1) is connected to the router's Interface R2, and host A (Interface A1) is connected to the router's Interface R1.
+
+(s) is fixed numbers you can not change that but the oher adresses you can change it for the reaching the goals
+
+Here is the required information:
+
+Host A: Machine A
+Routes: 10..0.0.0/8 => 192.168.0.254
+Interface A1:
+	IP: 104.198.14.2
+	Mask: 255.255.255.0
+
+Host B: Machine B
+Routes: default(s) -> 192.168.0.254
+Interface B1:
+	IP: 192.168.42.42
+	MASK: /30
+
+Router R: The Mighty Router
+Interface R2:
+	IP: 153.49.132.254(s)
+	Mask: 255.255.192.0(s)
+Interface R1
+	IP: 30.187.9.126(s)
+	Mask: 255.255.255.128(s)
+
+To achieve the goals:
+
+Goal 1: To enable communication between host Machine A and host The Mighty Router, you need to configure Interface A1 on host A and Interface R1 on the router with compatible IP addresses and subnet masks. For example:
+- Host A (Machine A):
+  - Interface A1: IP (an IP address on the same subnet as R1), Mask (the same subnet mask as R1)
+- Router R (The Mighty Router):
+  - Interface R1: IP 30.187.9.126, Mask 255.255.255.128
+
+Goal 2: To enable communication between host Machine B and host The Mighty Router, you need to configure Interface B1 on host B and Interface R2 on the router with compatible IP addresses and subnet masks. For example:
+- Host B (Machine B):
+  - Interface B1: IP (an IP address on the same subnet as R2), Mask (the same subnet mask as R2)
+- Router R (The Mighty Router):
+  - Interface R2: IP 153.49.132.254, Mask 255.255.192.0
+
+Goal 3: To enable communication between host Machine A and host Machine B, both hosts should be configured with IP addresses on the same subnet. Choose appropriate IP addresses and subnet masks for both host A (Machine A) and host B (Machine B) to achieve this goal.

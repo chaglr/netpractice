@@ -1,0 +1,29 @@
+Level 2 :
+Goal 1 : host Computer B needs to communicate with host Computer A
+Goal 1 : host Computer D needs to communicate with host Computer C
+
+(s) is fixed numbers you can not change that but the oher adresses you can change it for the reaching the goals
+
+connections
+interface A1 -> interface B1
+interface C1 -> interface D1
+
+host A: Computer A
+interface A1:
+	Ipv4: 192.168.145.1
+	Mask:255.255.255.224(s)
+
+host B: Computer B
+interface B1:
+	IP:192.168.145.222(s)
+	Mask: 255.255.255.32
+
+host C: Computer C
+interface C1:
+	Ipv4: 127.0.0.1
+	Mask:255.255.255.252(s)
+
+Host D: Computer D
+interface D1:
+	Ipv4: 127.0.0.4
+	Mask: /30(s)

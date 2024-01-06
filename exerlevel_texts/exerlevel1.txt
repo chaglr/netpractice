@@ -1,0 +1,36 @@
+Goal 1 : host my PC needs to communicate with host my little brother's computer
+Goal 2 : host my Mac needs to communicate with host my little sister's computer
+(s) is fixed numbers you can not change that but the oher adresses you can change it for the reaching the goals
+
+Devices:
+host A: my PC
+host B: my little brother's computer
+host C: my Mac
+host D: my little sister's computer
+
+connections:
+interface A1 -> interface B1
+interface A1 -> interface C1
+
+
+
+host A: my PC
+interface A1:
+	ipv4:104.93.23.371
+	Mask:255.255.255.0(s)
+
+host B: my little brother's computer
+interface B1:
+	ipv4: 104.94.23.12 (s)
+	Mask:255.255.255.0(s)
+
+
+host C: my Mac
+interface C1
+ipv4:211.191.132.75(s)
+Mask:255.255.255.0(s)
+
+host D: my little sister's computer
+interface D1:
+	ipv4:211.190.320.42
+	Mask:255.255.255.0(s)

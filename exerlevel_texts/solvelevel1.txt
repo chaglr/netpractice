@@ -1,0 +1,58 @@
+Goal 1 : host my PC needs to communicate with host my little brother's computer
+Goal 2 : host my Mac needs to communicate with host my little sister's computer
+(s) is fixed numbers you can not change that but the oher adresses you can change it for the reaching the goals
+
+Devices:
+host A: my PC
+host B: my little brother's computer
+host C: my Mac
+host D: my little sister's computer
+
+connections:
+interface A1 -> interface B1
+interface A1 -> interface C1
+
+
+
+host A: my PC
+interface A1:
+	ipv4:104.93.23.371
+	Mask:255.255.255.0(s)
+
+host B: my little brother's computer
+interface B1:
+	ipv4: 104.94.23.12 (s)
+	Mask:255.255.255.0(s)
+
+
+host C: my Mac
+interface C1
+ipv4:211.191.132.75(s)
+Mask:255.255.255.0(s)
+
+host D: my little sister's computer
+interface D1:
+	ipv4:211.190.320.42
+	Mask:255.255.255.0(s)
+
+
+mask: 255.255.0.0 cidr da /24 esittir.
+
+
+
+➜  ~ ipcalc 211.191.132.75 255.255.0.0
+
+Address:   211.191.132.75       11010011.10111111. 10000100.01001011
+Netmask:   255.255.0.0 = 16     11111111.11111111. 00000000.00000000
+Wildcard:  0.0.255.255          00000000.00000000. 11111111.11111111
+=>
+Network:   211.191.0.0/16       11010011.10111111. 00000000.00000000
+HostMin:   211.191.0.1          11010011.10111111. 00000000.00000001
+HostMax:   211.191.255.254      11010011.10111111. 11111111.11111110
+Broadcast: 211.191.255.255      11010011.10111111. 11111111.11111111
+Hosts/Net: 65534                 Class C
+
+
+224
+128 64 32 16 8 4 2 1
+1	1	1 0  0 0 0 0

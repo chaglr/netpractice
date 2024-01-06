@@ -1,0 +1,38 @@
+3 computers connected to a switch and the purposes in the question
+Goal 1 : host Host A needs to communicate with host Host B
+Goal 2 : host Host A needs to communicate with host Host C
+Goal 3 : host Host B needs to communicate with host Host C
+
+(s) is fixed numbers you can not change that but the oher adresses you can change it for the reaching the goals
+
+Devices
+host A: Host A
+switch S: Switch-1
+host B: Host B
+host C: Host C
+
+Connections
+interface A1 ->switch S: Switch-1
+interface B1 ->switch S: Switch-1
+interface C1 ->switch S: Switch-1
+
+host A: Host A
+interface A1
+	IP	: 104.198.52.125(s)
+	Mask:255.255.255.0
+
+host B: Host B
+interface B1:
+	IP	:127.168.42.42
+	Mask:255.255.0.0
+
+host C: Host C
+interface C1:
+	IP	:104.198.52.266
+	Mask:255.255.255.128(s)
+
+information given:
+host C's mask: 255.255.255.128
+host A's ipv4 address: 104.198.52.125
+
+According to this information, give IP address and mask to all hosts.

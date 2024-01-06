@@ -1,0 +1,73 @@
+Level 10 :
+Goal 1 : host Host one needs to communicate with host Host two
+Goal 2 : host Host three needs to communicate with host Host four
+Goal 3 : host Host one needs to communicate with host Internet
+Goal 4 : host Host one needs to communicate with host Host four
+Goal 5 : host Host two needs to communicate with host Host three
+Goal 6 : host Host three needs to communicate with host Internet
+Goal 7 : host Host four needs to communicate with host Internet
+
+If (s) is written, those numbers are fixed and cannot be changed, but if (c) is written, those numbers can be changed.
+
+connections:
+interface H11 => switch S1: Switch one
+interface H21 => switch S1: Switch one
+interface R11 => switch S1: Switch one
+interface R13 => interface R21
+interface R12 => internet I: Internet
+interface R23 => interface H41
+interface R22 => interface H31
+
+host H1: Host one
+Routes : 0.0.0.0/0(s) => 165.238.137.1(s)
+interface H11:
+	IP	:165.238.137.2(s)
+	Mask:255.255.255.0(c)
+
+host H2: Host two
+Routes : default(s) => 165.238.137.1(s)
+interface H21:
+	IP	: 192.168.42.42(c)
+	Mask: 255.255.0.0(c)
+
+host H3: Host three
+Routes : 0.0.0.0/0(s) => 10.0.0.254(c)
+interface H31
+	IP	: 192.168.0.1(c)
+	Mask: 255.255.255.0(c)
+
+host H4: Host four
+Routes : default(s) => 165.238.137.129(s)
+interface H41
+	IP	: 165.238.137.131(s)
+	Mask: 255.255.255.192(s)
+
+router R1: Router one
+Routes :
+	10.0.0.0/8(c) => 165.238.137.253(s)
+	165.238.137.128/26(s) => 165.238.137.253 (s)
+	0.0.0.0/0(s) => 163.172.250.1(s)
+interface R11:
+	IP	:165.238.137.1(s)
+	Mask:255.255.255.128(s)
+interface R12:
+	IP	:163.172.250.12 (s)
+	Mask: 255.255.255.240(s)
+interface R13
+	IP	:165.238.137.254(s)
+	Mask:255.255.255.0(c)
+
+router R2: Router two
+Routes :0.0.0.0/0(s) => 165.238.137.254(s)
+interface R21
+	IP	:165.238.137.253(s)
+	Mask:255.255.255.252(s)
+interface R22
+	IP	:10.0.0.254(c)
+	Mask:255.255.255.0(c)
+interface R23
+	IP	:8.8.8.8(c)
+	Mask:\18(c)
+
+internet I: Internet
+Routes :165.238.137.0/31(c) => 163.172.250.12(s)

@@ -1,0 +1,57 @@
+Level 8 :
+Goal 1 : host office.non-real.com needs to communicate with host home.non-real.com
+Goal 2 : host office.non-real.com needs to communicate with interface Somewhere on the Net
+Goal 3 : host home.non-real.com needs to communicate with interface Somewhere on the Net
+
+(s) is fixed numbers you can not change that but the oher adresses you can change it for the reaching the goals
+
+Devices:
+host C: office.non-real.com
+host D: home.non-real.com
+router R1: gate.non-real.com
+router R2: transit.my-isp.org
+
+Connections
+interface D1 -> interface R23
+interface C1 -> interface R22
+interface R21 -> interface R13
+interface R13 -> interface R12
+interface R12 -> internet I: Internet
+
+host C: office.non-real.com
+Routes : 0.0.0.0/0 => 10.0.0.254
+interface C1
+IP		: 192.168.0.1
+Mask	: 255.255.255.0
+
+host D: home.non-real.com
+Routes :default=>9.9.9.9
+interface D1:
+	IP	:7.9.10.11
+	Mask:255.255.255.240(s)
+
+router R1: gate.non-real.com
+Routes :
+	192.168.0.0/26 => 10.0.0.2
+	0.0.0.0 => 163.181.250.1
+interface R12:
+	IP	: 163.181.250.12(s)
+	Mask:255.255.255.240(s)
+interface R13
+IP	: 10.0.0.1
+Mask: 255.255.255.0
+
+router R2: transit.my-isp.org
+Routes : 10.0.0.0/8 => 128.7.234.62(s)
+interface R22:
+	IP	:192.168.0.254
+	Mask:255.255.0.0
+interface R23:
+	IP	:7.8.9.10
+	Mask:/18
+interface R21
+	IP	:10.0.0.2
+	Mask:255.255.0.0
+
+Intenet I: Internet
+Routes : 128.7.234.0/26 (s) -> 163.181.250.254

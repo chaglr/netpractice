@@ -1,0 +1,41 @@
+Level 7 :
+Goal 1 : host dev.non-real.net needs to communicate with host accounting.non-real.net
+
+(s) is fixed numbers you can not change that but the oher adresses you can change it for the reaching the goals
+
+Connections
+interface C1 ->interface R22
+interface R21 ->interface R12
+interface R11 -> interface A1
+
+Devices:
+	host C: accounting.non-real.net
+	routes: 0.0.0./0 => 0.0.0.0
+	interface C1
+	IP	: 118.198.14.1
+	Mask:255.255.255.0
+
+router R2: adm.non-real.net
+Routes : 0.0.0.0/0 => 0.0.0.0
+interface R21:
+	IP	:118.198.14.149
+	Mask:255.255.255.0
+interface R22:
+	IP	:118.198.14.252
+	Mask:255.255.255.0
+
+
+router R1: tech.non-real.net
+Routes: 0.0.0./0 => 0.0.0.0
+interface R11:
+	IP	:118.198.14.1 (s)
+	Mask:255.255.255.0
+interface R12:
+	IP	:118.198.14.254 (s)
+	Mask:255.255.255.0
+
+host A: dev.non-real.net
+Routes: 0.0.0./0 => 0.0.0.0
+interface A1
+IP	: 118.198.14.2
+Mask:255.255.255.0
