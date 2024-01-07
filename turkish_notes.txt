@@ -132,7 +132,7 @@ ipv4: 165.72.83.194/19 bunun kullanilabilir ipv4 araligini bulalim.
 
 once CIDR mask koyalim. 19 tane 1 bit 11111111.11111111.11100000.0000000 = 255.255.11100000.0000000
 
-Ipv4 adresini buna gore maskeleyelim 165.72.01010011.1100010 son iki oktet i bin yazdim ki anlasilir olsun.
+Ipv4 adresini buna gore maskeleyelim 165.72.01010011.1100010 son iki okteti bin yazdim ki anlasilir olsun.
 bizim maskimiz 1lerin bittigi yerde host adresi basliyor.
 
 mask:	255.255.111|00000.0000000
