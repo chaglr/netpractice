@@ -6,26 +6,26 @@ Goal 3: Host Machine A needs to communicate with host Machine B.
 The network diagram displays Level 5 with the following setup:
 
 1. **Router R: The Mighty Router** with two interfaces:
-   - **Interface R1**: 
+   - (fixed)**Interface R1**: 
      - IP Address: 30.187.96.126
      - Subnet Mask: 255.255.255.128
-   - **Interface R2**: 
+   - (fixed)**Interface R2**: 
      - IP Address: 153.49.132.254
      - Subnet Mask: 255.255.192.0
 
 2. **Host A: Machine A**, connected to Interface R1 of Router R, with one interface:
-   - **Interface A1**:
+   - (not fixed)**Interface A1**:
      - IP Address: 104.198.14.2
      - Subnet Mask: 255.255.255.0
-   - Routes:
+   - (not fixed)Routes:
      - All traffic to 10.0.0.8/29 is directed to 192.168.0.254
 
 3. **Host B: Machine B**, connected to Interface R2 of Router R, with one interface:
-   - **Interface B1**:
+   - (not fixed)**Interface B1**:
      - IP Address: 192.168.42.42
      - Subnet Mask: /30
    - Routes:
-     - The default route is set to 192.168.0.254
+     - The default(fixed) route is set to 192.168.0.254(not fixed)
 
 The network goals are as follows:
 - **Goal 1**: Host Machine A needs to communicate with Host The Mighty Router.
