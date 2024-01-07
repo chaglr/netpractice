@@ -1,59 +1,17 @@
-There are 2 computers (host B: Another host, host A: A nice host) and 1 router (router R: My_Gate) connected to a switch (switch S: Switch-1). The goals in question are as follows:
-Goal 1: Host A nice host needs to communicate with host Another host.
-Goal 2: Host A nice host needs to communicate with host My_Gate.
-Goal 3: Host Another host needs to communicate with host My_Gate.
+Level 4
+Router R (My_Gate) with three interfaces:
+	Interface R1: IP 110.184.119.91, Mask /23
+(fixed)	Interface R2: IP 110.184.119.1, Mask 255.255.255.128
+(fixed) Interface R3: IP 110.184.119.244, Mask 255.255.255.192
+Switch S (Switch-1)
 
-(s) is fixed numbers you can not change that but the oher adresses you can change it for the reaching the goals
+Host A (A nice host) connected to Switch-1, with interface :
+	Interface A1: IP 110.184.119.132, Mask 255.255.255.240
+	ip fixed
 
-Devices:
-Host A: A nice host
-Host B: Another host
-Router R: My_Gate
-switch S: Switch-1
+Host B (Another host) with interface:
+	Interface B1: IP 110.184.127.193, Mask 255.255.0.0
 
-connections
-Interface B1 -> switch S: Switch-1
-Interface A1 -> switch S: Switch-1
-Interface R1 -> switch S: Switch-1
-
-Host A: A nice host
-Interface A1
-	IP: 110.184.119.132(s)
-	Mask: 255.255.255.240
-
-Host B: Another host
-Interface B1
-	IP: 110.184.127.193
-	MASK: 255.255.0.0
-
-Router R: My_Gate
-Interface R1:
-	IP: 110.184.119.91
-	MASK: /23
-Interface R2:
-	IP: 110.184.119.1(s)
-	Mask: 255.255.255.128(s)
-Interface R3:
-	IP: 110.184.119.244(s)
-	Mask: 255.255.255.192(s)
-
-Connection details:
-Interface A1, Interface B1, and Interface R1 are connected to the switch with cables.
-
-Based on this information, let's achieve the goals:
-
-Goal 1: To enable communication between host A nice host and host Another host, you need to assign IP addresses and subnet masks to their respective interfaces (A1 and B1) on the same subnet. For example:
-- Host A (A nice host):
-  - Interface A1: IP 110.184.119.132, Mask (you need to specify a valid subnet mask)
-- Host B (Another host):
-  - Interface B1: IP (an IP address in the same subnet as A1), Mask (the same subnet mask as A nice host)
-
-Goal 2: To enable communication between host A nice host and host My_Gate, you need to configure the IP address and subnet mask on Interface R1 of the router to be on the same subnet as host A. For example:
-- Router R (My_Gate):
-  - Interface R1: IP (an IP address in the same subnet as A1), Mask (the same subnet mask as A nice host)
-
-Goal 3: To enable communication between host Another host and host My_Gate, you need to configure the IP address and subnet mask on Interface R1 of the router to be on the same subnet as host B. For example:
-- Router R (My_Gate):
-  - Interface R1: IP (an IP address in the same subnet as B1), Mask (the same subnet mask as Another host)
-
-Make sure the IP addresses and subnet masks are properly configured to fulfill these goals, and ensure that the switch and cable connections are operational.
+Host A needs to communicate with Host B 
+Host A needs to communicate with Router R 
+Host B needs to communicate with Host A
