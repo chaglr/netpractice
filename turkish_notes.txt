@@ -92,14 +92,14 @@ CIDR 24 notasyonu bize subnetmask da 24 adet 1 bitinin oldugunu gosteriyor. (sol
 
 IP : 192.168.1.10 subnetmask : 255.255.255.0 yani /24 ise
 
-CIDR				:		8		+		8		+		8				0		= 24
-subnetmask	dec		:	   255		.	   255		.	   255		.		0
-subnet mask bin 	:	11111111	.	11111111	.	11111111	.	00000000
-192.168.1.10 Ipv4	:	11000000	.	10101000	.	00000001	+	00001010
-						<------------------Network --------------->   <--HOST-->
+CIDR		:	8	+8	 +8	  +0	   = 24
+subnetmask dec	:	255	.255	 .255	  .0
+subnet mask bin :	11111111.11111111.11111111.00000000
+192.168.1.10 Ip	:	11000000.10101000.00000001.00001010
+			<--------- Network ------> <-HOST->
 
-Ipv4 :	192.168.1.00001010			Subnet Mask	:	255.255.255.0
-		<network>.<-Host->							<network-->.<host>
+Ipv4:	192.168.1.00001010	Subnet Mask:	255.255.255.0
+	<network>.<-Host->			<network-->.<host>
 
 Neden Ipv4 host kismini binary yazdik bunu kullanarak Network ve Broadcast adreslerini basit binary max-min hesabiyla bulacagiz.
 ve bu iki adresle de kullanilabilir adres araligini bulacagiz.
@@ -135,9 +135,9 @@ once CIDR mask koyalim. 19 tane 1 bit 11111111.11111111.11100000.0000000 = 255.2
 Ipv4 adresini buna gore maskeleyelim 165.72.01010011.1100010 son iki oktet i bin yazdim ki anlasilir olsun.
 bizim maskimiz 1lerin bittigi yerde host adresi basliyor.
 
-mask: 255.255.11100000.0000000
-ipv4  165. 72.01010011.1100010
-	<---network-><---host---->
+mask:	255.255.111|00000.0000000
+ipv4 	165.72.0101|0011.1100010
+	<-network->|<---host---->
 burada Ipv4 3. oktetin soldan 3. bitine kadar mask yapiyoruz yani geri kalan sag tarag host kismi sol tarafi ise network kismi.
 ipv4 adreninin network adresini bulmak icin host kismini sifir yapiyoruz.
 165.72.01000000.00000000 =165.72.64.0 bu bizim network adresimiz.
