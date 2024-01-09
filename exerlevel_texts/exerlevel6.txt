@@ -2,33 +2,14 @@
 (c) is can changeable numbers
 Goal 1 : host webserv.non-real.com needs to communicate with interface Somewhere on the Net
 
-cihazlar:
-host A: webserv.non-real.com
-switch S: sw-1.non-real.com
-router R: gate.non-real.com
-internet I: Internet
+İnternet simgesi (bu internet baglantisini temsil ediyor) ile başlayarak, "internet1 / Internet" olarak etiketlenmiş.
+internet I rota tablosu soyle : destination= (c)78.64.212.0/31
+next hop =(s)163.172.250.12 ve bu router'a (R2)ye interface R2 uzernden bağlanıyor.
 
-baglantilar
-interface A1 -> switch S:
-switch S -> interface R1
-router interface R2 -> internet I
-
-
-host A: webserv.non-real.com
-Routes : 0.0.0.0/0(c)  -> 78.64.212.1(c)
-interface A1:
-	IP	: 78.64.212.227(s)
-	Mask	: 255.255.255.0(c)
-
-
-router R: gate.non-real.com
-Routes : 10.0.0.0/8(c)  => 163.172.250.1(s)
-interface R1:
-	IP	: 78.64.212.254(c)
-	Mask: 255.255.255.128(s)
-interface R2:
-	IP	:163.172.250.12(s)
-	Mask:255.255.255.240(s)
-
-internet I: Internet
-Routes : 78.64.212.0/31(c)  => 163.172.250.12(s)
+routerin interface R2 IP adresi (s)"163.172.250.12" ve subnet maskesi (s)"255.255.255.240" olarak belirtilmiş.
+R2 routrinin rota tablosu destination=(c)10.0.0.0/8 next hop =(s)163.172.250.1
+r2 router interface R1 ile switch S: sw-1.non-real.com e baglaniyor.
+interface R1 ip adresi:	(c)78.64.212.254 maskesi: (s) 255.255.255.128.
+switch S: sw-1.non-real.com interface A1 ile host A: webserv.non-real.com baglaniyor.
+interface A1 IP: (s)78.64.212.227 maskesi: (c)255.255.255.0
+host A nin rota tablosu  destination= (c) 0.0.0.0/0 next hop = (c)78.64.212.1

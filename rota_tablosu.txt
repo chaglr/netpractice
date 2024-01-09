@@ -1,0 +1,38 @@
+Rota tablosundaki sol "destination" (hedef) ve "next hop"sag (bir sonraki atlama noktası) terimlerinin anlamları ağ yönlendirmesi
+bağlamında şöyledir:
+
+Destination (Hedef): Bu, paketlerin yönlendirildiği ağ adresini veya adres aralığını ifade eder. Bir ağ cihazı (örneğin bir router),
+kendi rota tablosunu kullanarak gelen bir paketin varış IP adresini kontrol eder ve bu IP adresi rota tablosundaki bir hedefle
+eşleşiyorsa, ilgili paketi uygun yönlendirme yapar.
+
+Next Hop (Bir Sonraki Atlama Noktası): Eğer bir paketin gitmesi gereken hedef rota tablosunda belirtilmişse, "next hop" paketin
+hangi sonraki cihaza (genellikle bir router veya gateway) yönlendirileceğini belirtir. Bu, paketin sonraki destinasyonuna ulaşması
+için gereken fiziksel veya lojistik adımdır.
+
+Basitçe özetlemek gerekirse:
+
+Hedef (Destination): Paketin gitmesi gereken yer.
+
+Bir Sonraki Atlama Noktası (Next Hop): Paketin hedefine ulaşmak için bir sonraki atlama yapacağı ara cihaz veya ağ geçidi.
+Ağ cihazları (routerlar), kendi rota tablolarını kullanarak, gelen her paket için en uygun "next hop"u seçer ve paketi bu
+yönlendirme üzerinden iletir. Bu süreç, paketlerin doğru hedeflerine verimli ve doğru bir şekilde ulaştırılmasını sağlamak
+için tasarlanmıştır.
+
+
+bir subnet'e trafik yönlendirmek istediğinizde, rota tablosundaki hedefe (destination) o subnet'in network adresini koymalısınız.
+Ağ cihazları (routerlar), bir IP adresi bloğuna trafik yönlendirirken, o bloğun network adresini ve subnet maskesini kullanır.
+Bu kombinasyon, hangi IP adreslerinin o subnet'e ait olduğunu tanımlar.
+
+Örneğin, 192.168.1.0/24 subnet'i için:
+
+Network Adresi: 192.168.1.0
+Subnet Maskesi: 255.255.255.0 veya CIDR notasyonunda /24
+Bu bilgiler rota tablosunda şöyle bir giriş oluşturur:
+
+Destination: 192.168.1.0/24
+Next Hop: Sonraki cihazın IP adresi (örneğin, 192.168.1.1)
+Bir paketin bu subnet'e gönderilmesi gerektiğinde, router rota tablosunu kontrol eder, uygun girişi bulur ve
+paketi "next hop" olarak belirtilen adrese yöneltir. Eğer bu subnet internete erişim sağlayacaksa ve
+bir "default gateway" belirlemek istiyorsanız, rota tablosuna genellikle 0.0.0.0/0 gibi bir varsayılan rota eklersiniz
+ve "next hop" olarak da o subnet'in gateway adresini verirsiniz. Bu, bu subnet'ten gelen ve rota tablosunda spesifik
+bir girişi olmayan her türlü trafik için kullanılır.

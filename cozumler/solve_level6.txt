@@ -1,0 +1,70 @@
+The internet behaves like a router. However,
+ if an interface is connected directly or indirectly to the internet, it cannot have an IP address in the following reserved private IP ranges:
+
+192.168.0.0 - 192.168.255.255 (65,536 IP addresses)
+172.16.0.0 - 172.31.255.255   (1,048,576 IP addresses)
+10.0.0.0 - 10.255.255.255     (16,777,216 IP addresses)
+
+1. The next hop of the internet is already entered, and matches the IP address of the Interface R2.
+Therefore we only need to bother with the destination of the internet.
+
+The internet must send its packets to Client A. To do so, the internet's destination must match the network address of Client A.
+Let's find the network address of Client A:
+
+Client A's mask is 255.255.255.128, which is equivalent to /25.
+This means that the first 25 bits of its IP address are its network address.
+We know then that the first 3 bytes (24 bits) of its IP address make part of its network address:
+
+
+
+
+bunu cozumu soyle oluyor. oncelikle R1 ile A1 ayni subnet koymalyiz. veri alisverisi olsun.
+1)sabit olan R1 mask A1 e kopyala
+2)sonra tum paketleri R1 e yollamasi icin  icin A1 route dest default yap next hop ise R1 in ip adresi yap.
+3)router R paketleri internete gondermesi icin default gateway olarak 0.0.0.0/0 olmali.
+4) internet route a1 paket gondermesi icin destination i A1 in network adresi olmali
+
+
+network adresi nasil bulunur.
+ip adresinin 255 mask kismini ip olarak aynen yaz. kalan kisimini bit olarak yaz. geri kalan kismini 0 yazinca network adresi buluruz. 1 yazindada
+broadcast adresi max
+
+ip:		 	 78. 64.212.227
+mask:		255.255.255.128
+network:	 78. 64.212.100000000
+network		 78. 64.212.128/25
+broadcast:	 78. 64.212.255
+host min:	 78. 64.212.129
+host max:	 78. 64.212.254
+
+
+
+
+
+log:
+** generated for login "muhnal" **
+******* Goal ID 1 ********
+forward way : A -> Somewhere on the Net (8.8.8.8)
+on A : packet accepted
+on A: destination does not match any interface. pass through routing table
+on A : route match 0.0.0.0/0
+on A: send to gateway 78.64.212.254 through interface A1
+on switch S: pass to all connections
+on R : packet accepted
+on R: destination does not match any interface. pass through routing table
+on R : route match 0.0.0.0/0
+on R: send to gateway 163.172.250.1 through interface R2
+on I : packet accepted
+on I: destination IP reached
+on A : loop detected
+reverse way : Somewhere on the Net -> A (78.64.212.227)
+on I : packet accepted
+on I: destination does not match any interface. pass through routing table
+on I : route match 78.64.212.128/25
+on I: send to gateway 163.172.250.12 through interface I1
+on R : packet accepted
+on R: send to R1
+on switch S: pass to all connections
+on R : loop detected
+on A : packet accepted
+on A: destination IP reached
