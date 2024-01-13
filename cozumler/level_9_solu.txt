@@ -1,0 +1,32 @@
+
+
+
+
+A) once host C: cation internete bagla
+Private ip den kurtul nete bağlanman icin 10 ile baslayani 9 ile değiştirerek yapacaz.
+
+1)R22 refers alarak degisim yapacaz
+R22->	 10.0.0.254	-> 9.0.0.254
+	255.255.255.0	-> 255.255.255.252
+
+2)Sonra c route c1 değiştir.
+3)R2 route table, R21 ve R13 desistir.
+	interface R13	100.202.17.254 -> aynisi
+			255.255.255.0 -> 255.255.255.252
+	interface R21	100.202.18.253 -> 100.202.17.253
+bu ikisine gore R1 ve R2 route düzelt.
+R1 biraz farkli değiştiriyoruz. 2. Rotayı sil ve 1.sini  destination i default yap.
+R2 route I r13 ipsini yapacaksın 
+
+
+5) internet I route a 9.0.0.252/1 ver mask farkli verebilirsin fakat ip sabit.
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
+
+B) gluon host d tarafini ayarla gluon route fix ipsini r23 e verince r23 ref alarak d1 belirle.
+
+C)switch tarafini yaparken private olan ip 192 eni kurtul basindaki 1 sil ve R11 fixed mask buraya yap. Bna gore ip adreslerini ve routelari yap. Host b b1 r11 a1 host a. 
+R11 92.168.52.1 255.255.255.128
+
+Ve internet conn icin internet route table a switch tarafini kapsayan bir ip adresi ile mask yaz.
+92.168.52.0/24 mask kismi değişebilir fakat ip sabit.
+

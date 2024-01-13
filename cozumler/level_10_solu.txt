@@ -1,0 +1,33 @@
+2. When choosing the IP addresses, we must make sure of 2 things:
+
+The IP address is covered by the internet destination.
+The IP address range of the various networks does not overlap.
+
+Burada toplam 4 tane farkli network var.
+1. Client  H4 tarafi
+2. Client H3 tarafi
+3. Switch tarafi
+4. ise routerlar arasi
+
+2. When choosing the IP addresses, we must make sure of 2 things:
+
+The IP address is covered by the internet destination.
+The IP address range of the various networks does not overlap.
+
+Oncelikle fixed hallenelim .
+
+1)switch tarafı 
+
+interface R11
+IP	:165.238.137.1
+Mask	:255.255.255.128
+Buna gore h1 ve h2 belirledik goal 1 accomplished 
+
+2)H4 tarafi hallederiz
+
+3)Sonra da routerlar arasını hallederiz. 
+
+Bunlari hallettikten sonra  host 3 tarafı secmemi gerekiyor burada dar bir mask seçerek 252 ve ip leri de digerleriyle cakismayacak sekilde 193-194 seceriz. Baska ip seçemiyoruz sadece 193-194 ve 252 mask
+
+En son olarak r1 route default yaparız ve internet I dest olarak tum host lari kapsayacak bir aralık veririz 165.238.137.0/1 ile 165.238.137.0/24 arasi bunu kapsar.
+
