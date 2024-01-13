@@ -9,14 +9,14 @@ Private ip den kurtul nete bağlanman icin 10 ile baslayani 9 ile değiştirerek
 R22->	 10.0.0.254	-> 9.0.0.254
 	255.255.255.0	-> 255.255.255.252
 
-2)Sonra c route c1 değiştir.
+2)Sonra host C: cation Routes ve interface c1 değiştir.
 3)R2 route table, R21 ve R13 desistir.
 	interface R13	100.202.17.254 -> aynisi
 			255.255.255.0 -> 255.255.255.252
 	interface R21	100.202.18.253 -> 100.202.17.253
 bu ikisine gore R1 ve R2 route düzelt.
-R1 biraz farkli değiştiriyoruz. 2. Rotayı sil ve 1.sini  destination i default yap.
-R2 route I r13 ipsini yapacaksın 
+R1 biraz farkli değiştiriyoruz. 2. Rotayı sil ve 1.sini  destination i default yap. Next hop R21 ipv4 olacak zaten
+
 
 
 5) internet I route a 9.0.0.252/1 ver mask farkli verebilirsin fakat ip sabit.
@@ -29,4 +29,11 @@ R11 92.168.52.1 255.255.255.128
 
 Ve internet conn icin internet route table a switch tarafini kapsayan bir ip adresi ile mask yaz.
 92.168.52.0/24 mask kismi değişebilir fakat ip sabit.
+
+
+SINAVDA NASIL YAPMALISIN
+1) TUM ROUTERLARI DEST KISMINI "DEF" YAP. R1 2. ROTASINI SIL.
+2) INTERNET ROUTESINI DUZELT ILK ROTA ARALIGINI HOST B DEN AL 2. SINIDE COUTIONDAN AL
+3)cation u private internet olmaktan çıkar (10.) (9.)
+
 
