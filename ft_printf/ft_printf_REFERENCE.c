@@ -52,9 +52,9 @@ int	ft_printf(const char *format, ...)
 
 int main(void)
 {
-
-//	printf("%d", "caglar");
-//	printf("%d", caglar);
-	printf("%d", 23);
-	printf("%d", 23);
+	int i = 0;
+	i = ft_printf("%s %d, %x %g", "HELLO", 42, 42);
+	//		ft_printf("%s", 23);
+	ft_printf("\n%d", i);
+	return(0);
 }

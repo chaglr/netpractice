@@ -2,7 +2,7 @@
 #include <unistd.h>
 #include <stdarg.h>
 
-void ft_putstr(char *str ,*len)
+void ft_putstr(char *str ,int *len)
 {
 	if(!str) //str adresi bossa
 		str = "(null)";
@@ -10,7 +10,7 @@ void ft_putstr(char *str ,*len)
 		*len += write(1, str++, 1);
 }
 
-void ft_putnbr(long long int nbr, base, *len)
+void ft_putnbr(long long int nbr, int base, int  *len)
 {
 	char *hex = "0123456789abcdef";
 
@@ -20,8 +20,8 @@ void ft_putnbr(long long int nbr, base, *len)
 		*len += write(1, "-", 1);
 	}
 	if(nbr > base)
-		putdigit((nbr/base), base, len);
-	*len += write(1, hex[nbr % base], 1);
+		ft_putnbr((nbr/base), base, len);
+	*len += write(1, &hex[nbr % base], 1);
 }
 
 int ft_printf(const char *format, ...)
@@ -30,7 +30,6 @@ int ft_printf(const char *format, ...)
 	va_list	ap;
 	//start the va;
 	va_start(ap, format);
-
 	int len = 0;
 	//karakterimiz % ise ve sonraki karakter 's' 'd' 'x' ise
 	while(*format)
@@ -40,11 +39,11 @@ int ft_printf(const char *format, ...)
 		{
 			//bu format pointerini bir sonraki array elemanina gecirir.
 			format++;
-			if(*format = 's')
+			if(*format == 's')
 				ft_putstr(va_arg(ap, char *), &len);
-			else if(*format = 'd')
+			else if(*format == 'd')
 				ft_putnbr((long long int)va_arg(ap, int), 10, &len);
-			else if(*format = 'x')
+			else if(*format == 'x')
 				ft_putnbr((long long int)va_arg(ap, unsigned int), 16, &len);
 		}
 		else
@@ -52,7 +51,15 @@ int ft_printf(const char *format, ...)
 		format++;
 	}
 
+	return(va_end(ap), len);
+}
 
+int main(void)
+{
+	int i = 0;
+	i = ft_printf("%s %d, %x %g", "HELLO", 42, 42);
+	ft_printf("\n%d", i);
+	return(0);
 }
 
 /*
